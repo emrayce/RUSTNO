@@ -5,6 +5,9 @@ use card::{
     Card, Symbol, Color
 };
 
+use rand::thread_rng;
+use rand::seq::SliceRandom;
+
 fn main() {
     let mut player1 = Player::new(String::from("Sander"));
     let mut player2 = Player::new(String::from("Cedric"));
@@ -18,7 +21,7 @@ fn main() {
         println!("{:?}", i);
     }
 
-    //Create deck and playfield
+    //Create deck
     let mut deck = Vec::new();
     for i in 1..5 {
         deck.push(Card::new(Color::RED, Symbol::ONE));
@@ -27,11 +30,27 @@ fn main() {
         deck.push(Card::new(Color::YELLOW, Symbol::ONE));
     }
 
-    /*for i in deck.iter() {
+    // Randomize deck
+    deck.shuffle(&mut thread_rng());
+    for i in deck.iter() {
         println!("{:?}", i);
-    }*/
-    // Distribute cards to player
+    }
     
+    // Distribute cards to player
+    for _ in 1..3 {
+        for i in players.iter() {
+        }
+    }
+
     // Create order and first to play
     // Gameplay loop;
+}
+
+pub fn draw(mut player: Player, n: usize, mut deck: Vec<Card>) {
+    if n > deck.len() {
+
+    }
+    else {
+        player.draw(deck, n);
+    }
 }
