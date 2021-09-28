@@ -20,10 +20,17 @@ enum Color {
     YELLOW,
     BLUE,
     GREEN,
+    BLACK,
 }
 
 struct Card {
-    // Symbol
-    // Color
+    symbol: Symbol,
+    color: Color,
     // Effect
+    // ONE-NINE: do nothing
+    // STOP: next player can't play,
+    // PLUS_2: NEXT PLAYER draw 2 cards
+    // PLUS_4: NEXT PLAYER draw 4 cards and current player chose a new color
+    // CHANGE_COLOR: Current player chose a new color
+    // CHANGE_DIRECTION: Inverse the play order
 }
