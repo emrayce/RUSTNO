@@ -1,20 +1,20 @@
 #[derive(Debug, Clone)]
 #[allow(dead_code)]
 pub enum Symbol {
-    ONE,
-    TWO,
-    THREE,
-    FOUR,
-    FIVE,
-    SIX,
-    SEVEN,
-    EIGHT,
-    NINE,
-    STOP,
-    PLUS_2,
-    PLUS_4,
-    CHANGE_COLOR,
-    CANGE_DIRECTION,
+    One,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Stop,
+    Plus2,
+    Plus4,
+    ChangeColor,
+    ChangeDirection,
 }
 
 #[allow(dead_code)]
@@ -41,11 +41,11 @@ impl Card {
 
     pub fn effect(&self) {
         match &self.symbol {
-            STOP => 0,   // STOP: next player can't play,
-            PLUS_2 => 0 , // PLUS_2: NEXT PLAYER draw 2 cards
-            PLUS_4 => 0, // PLUS_4: NEXT PLAYER draw 4 cards and current player chose a new color
-            CHANGE_COLOR => 0,   // CHANGE_COLOR: Current player chose a new color
-            CHANGE_DIRECTION => 0,   // CHANGE_DIRECTION: Inverse the play order
+            Symbol::Stop => 0,   // STOP: next player can't play,
+            Symbol::Plus2 => 0 , // PLUS_2: NEXT PLAYER draw 2 cards
+            Symbol::Plus4 => 0, // PLUS_4: NEXT PLAYER draw 4 cards and current player chose a new color
+            Symbol::ChangeColor => 0,   // CHANGE_COLOR: Current player chose a new color
+            Symbol::ChangeDirection => 0,   // CHANGE_DIRECTION: Inverse the play order
             _ => 0, // ONE-NINE: do nothing
 
         };

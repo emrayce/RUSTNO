@@ -42,11 +42,11 @@ impl Game {
 
 fn create_deck() -> Vec<Card> {
     let mut deck = Vec::new();
-    for i in 1..5 {
-        deck.push(Card::new(Color::RED, Symbol::ONE));
-        deck.push(Card::new(Color::BLUE, Symbol::ONE));
-        deck.push(Card::new(Color::GREEN, Symbol::ONE));
-        deck.push(Card::new(Color::YELLOW, Symbol::ONE));
+    for _ in 1..5 {
+        deck.push(Card::new(Color::RED, Symbol::One));
+        deck.push(Card::new(Color::BLUE, Symbol::One));
+        deck.push(Card::new(Color::GREEN, Symbol::One));
+        deck.push(Card::new(Color::YELLOW, Symbol::One));
     }
 
     deck
