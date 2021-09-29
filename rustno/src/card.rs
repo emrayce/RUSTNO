@@ -1,5 +1,5 @@
 #[derive(Debug, Clone)]
-#[allow(Deadcode)]
+#[allow(dead_code)]
 pub enum Symbol {
     ONE,
     TWO,
@@ -17,7 +17,7 @@ pub enum Symbol {
     CANGE_DIRECTION,
 }
 
-#[allow(Deadcode)]
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum Color {
     RED,

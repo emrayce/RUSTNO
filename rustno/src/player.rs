@@ -1,5 +1,4 @@
-use crate::card;
-use card::Card;
+use crate::card::Card;
 
 #[derive(Debug, Clone)]
 pub struct Player {
