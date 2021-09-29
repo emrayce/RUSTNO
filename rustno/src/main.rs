@@ -24,6 +24,8 @@ fn main() {
 
     //Create deck
     let mut deck = Vec::new();
+    let mut playfield = Vec::new();
+
     for i in 1..5 {
         deck.push(Card::new(Color::RED, Symbol::ONE));
         deck.push(Card::new(Color::BLUE, Symbol::ONE));
@@ -40,23 +42,27 @@ fn main() {
     // Distribute cards to player
     for _ in 1..3 {
         for i in players.iter_mut() {
-            draw(i, &mut deck);
+            i.add_card(draw_from_deck(&mut deck));
         }
     }
 for i in players.iter() {
         println!("{:?}", i);
     }
 
+    playfield.push(draw_from_deck(&mut deck));   
+
     // Create order and first to play
     // Gameplay loop;
 }
 
-pub fn draw(player: &mut Player, deck: &mut Vec<Card>) {
+pub fn draw_from_deck(deck: &mut Vec<Card>) -> Card {
     let tmp = deck.pop();
 
     match tmp {
-        Some(x) => player.add_card(x),
+        Some(x) => x,
         None => unimplemented!(),
     }
 }
+
+
 
