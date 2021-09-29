@@ -1,9 +1,10 @@
 use crate::card;
+use card::Card;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Player {
     name: String,
-    hand: Vec<card::Card>,
+    hand: Vec<Card>,
 }
 
 impl Player {
@@ -12,12 +13,7 @@ impl Player {
         Player { name, hand: Vec::new() }
     }
 
-    pub fn draw(&mut self, mut deck: Vec<card::Card>, n: usize) {
-        let tmp = deck.pop();
-
-        match tmp {
-            Some(x) => self.hand.push(x),
-            None => (),
-        };
+    pub fn add_card(&mut self, card: Card) {
+        self.hand.push(card);
     }
 }

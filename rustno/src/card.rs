@@ -1,4 +1,5 @@
-#[derive(Debug)]
+#[derive(Debug, Clone)]
+#[allow(Deadcode)]
 pub enum Symbol {
     ONE,
     TWO,
@@ -16,7 +17,8 @@ pub enum Symbol {
     CANGE_DIRECTION,
 }
 
-#[derive(Debug)]
+#[allow(Deadcode)]
+#[derive(Debug, Clone)]
 pub enum Color {
     RED,
     YELLOW,
@@ -25,7 +27,7 @@ pub enum Color {
     BLACK,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Card {
     symbol: Symbol,
     color: Color,
