@@ -1,9 +1,6 @@
 mod player;
 use player::Player;
 mod card;
-use card::{
-    Card, Symbol, Color
-};
 
 mod game;
 use game::Game;
@@ -19,11 +16,7 @@ fn main() {
     // Create players
     let players = vec![player1, player2, player3, player4];
 
-    let game = Game::new(players);
+    let mut game = Game::new(players);
 
-    println!("{:?}", game);
-
+    game.game_loop();
 }
-
-
-

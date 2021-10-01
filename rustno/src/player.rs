@@ -15,4 +15,22 @@ impl Player {
     pub fn add_card(&mut self, card: Card) {
         self.hand.push(card);
     }
+
+    pub fn can_play(&mut self, last_card: &Card) -> bool {
+        for card in self.hand.iter_mut() {
+            if card.same_symbol_as(last_card) | card.same_symbol_as(last_card) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    pub fn play_card(&mut self, card: usize) -> Card{
+        self.hand.remove(card)
+    }
+
+    pub fn has_no_card(&mut self) -> bool {
+        return self.hand.len() == 0;
+    }
 }
