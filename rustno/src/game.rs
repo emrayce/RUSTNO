@@ -44,11 +44,11 @@ impl Game {
     pub fn game_loop(&mut self) {
         loop {
             // can the current player play ?
-            if (!self.players[self.turn].can_play(&self.last_card)) {
+            if !self.players[self.turn].can_play(&self.last_card) {
                 self.players[self.turn].add_card(draw_from_deck(&mut self.deck));
             }
 
-            if (self.players[self.turn].can_play(&self.last_card)) {
+            if self.players[self.turn].can_play(&self.last_card) {
                 println!("player {} can play", self.turn);
                 // player play a card;
                 // update playfield and last_card
@@ -56,7 +56,7 @@ impl Game {
             }
 
             // check if the current player win
-            if (self.players[self.turn].has_no_card()) {
+            if self.players[self.turn].has_no_card() {
                 break();
             }
 

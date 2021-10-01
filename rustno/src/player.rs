@@ -18,7 +18,7 @@ impl Player {
 
     pub fn can_play(&mut self, last_card: &Card) -> bool {
         for card in self.hand.iter_mut() {
-            if card.same_symbol_as(last_card) | card.same_symbol_as(last_card) {
+            if card.same_color_as(last_card) | card.same_symbol_as(last_card) {
                 return true;
             }
         }
