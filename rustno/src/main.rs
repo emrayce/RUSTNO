@@ -5,6 +5,7 @@ mod card;
 mod game;
 use game::Game;
 
+mod app;
 
 fn main() {
 
@@ -18,5 +19,7 @@ fn main() {
 
     let mut game = Game::new(players);
 
-    game.game_loop();
+    app::launch();
+
+    //game.game_loop();
 }
