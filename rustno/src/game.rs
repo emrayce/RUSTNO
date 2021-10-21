@@ -1,4 +1,4 @@
-use crate::player::Player;
+use crate::player::{self, Player};
 use crate::card::{
     Card, Symbol, Color
 };
@@ -42,6 +42,11 @@ impl Game {
     }
 
     pub fn game_loop(&mut self) {
+        for player in self.players.iter() {
+            println!("{}", player);
+        }
+
+        /*
         loop {
             // can the current player play ?
             if !self.players[self.turn].can_play(&self.last_card) {
@@ -61,7 +66,7 @@ impl Game {
             }
 
             self.turn = (self.turn + 1) % self.players.len();
-        }
+        }*/
 
         println!("Congrats player {} you win the game motherfucker!", self.turn);
     }

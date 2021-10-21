@@ -1,3 +1,5 @@
+use core::fmt;
+
 #[derive(Debug, Clone, PartialEq)]
 #[allow(dead_code)]
 pub enum Symbol {
@@ -16,6 +18,31 @@ pub enum Symbol {
         ChangeColor,
         ChangeDirection,
 }
+
+impl fmt::Display for Symbol {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        use Symbol::*;
+        let symbol = match self {
+            One => "1",
+            Two => "2",
+            Three => "3",
+            Four => "4",
+            Five => "5",
+            Six => "6",
+            Seven => "7",
+            Eight => "8",
+            Nine => "9",
+            Stop => "Ø",
+            Plus2 => "+2",
+            Plus4 => "+4",
+            ChangeColor => "CC",
+            ChangeDirection => "CD",
+        };
+
+        write!(f, "{}", symbol)
+    }
+}
+
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, PartialEq)]
@@ -59,4 +86,11 @@ impl Card {
     pub fn same_color_as(&mut self, card: &Card) -> bool {
        return self.color == (*card).color;
     }
+}
+
+impl fmt::Display for Card {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}", self.symbol)
+    }
+
 }

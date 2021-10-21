@@ -1,4 +1,6 @@
 use crate::card::Card;
+use std::fmt;
+
 #[derive(Debug, Clone)]
 pub struct Player {
     name: String,
@@ -31,5 +33,15 @@ impl Player {
 
     pub fn has_no_card(&mut self) -> bool {
         return self.hand.len() == 0;
+    }
+}
+
+impl fmt::Display for Player {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}: ", self.name)?;
+        for card in self.hand.iter() {
+            write!(f, "{} ", card)?;
+        }
+        Ok(())
     }
 }
