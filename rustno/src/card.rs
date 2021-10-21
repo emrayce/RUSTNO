@@ -1,4 +1,4 @@
-use core::fmt;
+use std::fmt;
 
 #[derive(Debug, Clone, PartialEq)]
 #[allow(dead_code)]
@@ -44,14 +44,14 @@ impl fmt::Display for Symbol {
 }
 
 
-#[allow(dead_code)]
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq)]
+#[repr(u32)]
 pub enum Color {
-    RED,
-        YELLOW,
-        BLUE,
-        GREEN,
-        BLACK,
+    RED = 31,
+    YELLOW = 33,
+    BLUE = 34,
+    GREEN = 32,
+    SPECIAL = 0,
 }
 
 #[derive(Debug, Clone)]
@@ -88,9 +88,12 @@ impl Card {
     }
 }
 
+// Display a card
+// the font color is the same as the card color
+// then reset the font color for the following text
 impl fmt::Display for Card {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", self.symbol)
+        write!(f, "\u{001b}[{}m{}\u{001b}[0m", self.color as u32, self.symbol)
     }
 
 }
