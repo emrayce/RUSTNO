@@ -34,6 +34,10 @@ impl Player {
     pub fn has_no_card(&mut self) -> bool {
         return self.hand.len() == 0;
     }
+
+    pub fn hand_length(&mut self) -> usize{
+        self.hand.len()
+    }
 }
 
 impl fmt::Display for Player {

@@ -1,6 +1,6 @@
 use std::fmt;
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq)]
 #[allow(dead_code)]
 pub enum Symbol {
     One,
@@ -54,7 +54,7 @@ pub enum Color {
     SPECIAL = 0,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct Card {
 symbol: Symbol,
             color: Color,

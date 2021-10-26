@@ -1,10 +1,13 @@
-use crate::player::{self, Player};
+use crate::player::Player;
 use crate::card::{
     Card, Symbol, Color
 };
 
 use rand::thread_rng;
 use rand::seq::SliceRandom;
+use regex::Regex;
+
+use std::io::stdin;
 
 #[derive(Debug)]
 pub struct Game {
@@ -37,39 +40,60 @@ impl Game {
         // turn = player1
         let turn: usize = 0;
 
-
         Game { players, deck, playfield, last_card, turn }
     }
 
     pub fn game_loop(&mut self) {
-        for player in self.players.iter() {
-            println!("{}", player);
-        }
-
-        /*
         loop {
+            // Display the player info and the last card played 
+            println!("{}", self.players[self.turn]);
+            println!("Last card played: {}", self.last_card);
+
             // can the current player play ?
             if !self.players[self.turn].can_play(&self.last_card) {
                 self.players[self.turn].add_card(draw_from_deck(&mut self.deck));
             }
 
             if self.players[self.turn].can_play(&self.last_card) {
-                println!("player {} can play", self.turn);
-                // player play a card;
+                let chosen_card: usize = self.input_loop();
+               
                 // update playfield and last_card
+                self.playfield.push(self.last_card);
+
+                self.last_card = self.players[self.turn].play_card(chosen_card);
                 // Do the card effect if any
             }
 
-            // check if the current player win
+            // check if the current player wins
             if self.players[self.turn].has_no_card() {
                 break();
             }
 
             self.turn = (self.turn + 1) % self.players.len();
-        }*/
+        }
 
         println!("Congrats player {} you win the game motherfucker!", self.turn);
     }
+
+    fn input_loop(&mut self) -> usize {
+        loop {
+            let mut chosen_card = String::new();
+            println!("Chose a card to play: ");
+            // player play a card;
+            stdin().read_line(&mut chosen_card).expect("Enter a valid string");
+            
+            if is_user_input_valid(&chosen_card) {
+                let slice = &chosen_card[..1];
+                let index: usize = slice.parse().unwrap();
+                    if index < self.players[self.turn].hand_length() {
+                        return index;
+                    }
+            }
+            
+            println!("Enter a valid card!");
+        };
+    }
+
 }
 
 fn create_deck() -> Vec<Card> {
@@ -96,3 +120,13 @@ fn draw_from_deck(deck: &mut Vec<Card>) -> Card {
         None => unimplemented!(),
     }
 }
+
+// Check if user input is valid
+// A valid input is [0-9]+
+fn is_user_input_valid(string: &String) -> bool {
+    let regex = Regex::new(r"[0-9]+").unwrap();
+    regex.is_match(&string)
+}
+
+
+
