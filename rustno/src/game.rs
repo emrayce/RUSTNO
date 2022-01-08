@@ -56,7 +56,7 @@ impl Game {
 
             if self.players[self.turn].can_play(&self.last_card) {
                 let chosen_card: usize = self.input_loop();
-               
+
                 // update playfield and last_card
                 self.playfield.push(self.last_card);
 
@@ -79,20 +79,27 @@ impl Game {
         loop {
             let mut chosen_card = String::new();
             println!("Chose a card to play: ");
+
             // player play a card;
             stdin().read_line(&mut chosen_card).expect("Enter a valid string");
-            
+
             if is_user_input_valid(&chosen_card) {
-                let slice = &chosen_card[..1];
-                let index: usize = slice.parse().unwrap();
-                    if index < self.players[self.turn].hand_length() {
-                        return index;
-                    }
+                let index : usize = chosen_card[..1].parse::<usize>().unwrap();
+                if index < self.players[self.turn].hand_length() {
+                    return index;
+                }
             }
-            
+
+
             println!("Enter a valid card!");
         };
     }
+
+    fn cur_player(&mut self) -> &Player {
+        &self.players[self.turn]
+    }
+
+
 
 }
 
@@ -127,6 +134,3 @@ fn is_user_input_valid(string: &String) -> bool {
     let regex = Regex::new(r"[0-9]+").unwrap();
     regex.is_match(&string)
 }
-
-
-
